@@ -1,6 +1,10 @@
-#!/bin/bash
+!/bin/bash
 
-echo "intergrating defaults..."
+echo "configurating XDG variables..."
+
+sudo echo "" > /etc/profile
+
+echo "intergrating defaults"
 
 mkdir ~/.config/
 
