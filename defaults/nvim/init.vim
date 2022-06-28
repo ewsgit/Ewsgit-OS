@@ -15,7 +15,7 @@ set undofile
 set incsearch
 set termguicolors
 set scrolloff=4
-set signcolumn=yes
+set signcolumn=no
 set mouse=a
 
 call plug#begin('~/.vim/plugged')
