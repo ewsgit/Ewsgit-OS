@@ -1,4 +1,5 @@
-" EWSGIT OS (c) 2022 Ewsgit
+" EwsgitOS © 2022 Ewsgit
+" Licensed under the MIT license: https://ewsgit.mit-license.org
 
 set tabstop=4 softtabstop=4 shiftwidth=4
 set expandtab
