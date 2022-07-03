@@ -6,7 +6,12 @@
 #     #####     # #   #   #     #      #   #     #
 #####  # #  ##### ##### #####   #      ##### #####</pre>
 
-- based on Manjaro Linux
+- based on Arch Linux
+
+# Installation command
+```bash
+curl https://raw.githubusercontent.com/ewsgit/Ewsgit-OS/installation-testing/install.sh | bash
+```
 
 # Planned features
 1. simple language development enviroment installer
