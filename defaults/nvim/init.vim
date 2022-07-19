@@ -1,4 +1,4 @@
-" EWSGIT OS (c) 2022 Ewsgit
+" EWSGIT OS © 2022 Ewsgit
 
 set tabstop=4 softtabstop=4 shiftwidth=4
 set expandtab

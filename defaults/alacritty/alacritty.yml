@@ -1,5 +1,4 @@
 # Ewsgit OS © 2022 Ewsgit
-# Alacritty © Alacritty Developers https://github.com/alacritty/alacritty
 
 env:
   # set the TERM variable to indicate that the current terminal emulator is Alacritty
