@@ -1,7 +1,7 @@
 # Ewsgit-OS
 
 <pre>##### #   # ##### ##### ##### #####    ##### #####
-#     #   # #     #       #     #      #   # #    
+#     #   # #     #       #     #      #   # #
 ###   # # # ##### #   #   #     #      #   # #####
 #     #####     # #   #   #     #      #   #     #
 #####  # #  ##### ##### #####   #      ##### #####</pre>
@@ -19,3 +19,11 @@
 8. auto installed popos shell (tiling window manager for gnome) [gnome desktop only]
 9. basic neovim preinstallation
 10. auto-installed color picker tool [gnome desktop only]
+
+
+# Steps to install
+
+1. Download the latest arch linux iso [ArchLinux](https://archlinux.org)
+2. Install archlinux without a desktop enviroment (this can be done with the command "archinstall" and the minimal install)
+3. follow the setup wizzard
+4. You should now be done :D

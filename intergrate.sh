@@ -46,4 +46,12 @@ do
     if [$DESKTOP_ENV == "gnome"]; then;
         echo "Installing the Gnome Desktop Environment"
     fi
+    if [$DESKTOP_ENV == "kde"]; then;
+        echo "Installing the Kde Desktop Environment"
+    fi
+    if [$DESKTOP_ENV == "i3"]; then;
+        echo "Installing the i3 Window Manager"
+        cp ./defaults/i3 ~/config/config/i3
+        cp ./defaults/i3status ~/config/config/i3
+    fi
 done
