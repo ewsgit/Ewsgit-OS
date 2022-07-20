@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 echo "     /\\      "
 echo "    /  \\     "
@@ -36,6 +36,8 @@ cp ./defaults/nvim -r ~/config/config/.nvim/
 cp ./default/bash -r ~/config/config/.bash/
 cp ./defaults/alacritty -r ~/config/config/alacritty
 
+# TODO: install yay here
+
 echo "select a desktop environment to install."
 select DESKTOP_ENV in "gnome" "kde" "i3" "continue";
 do
@@ -53,5 +55,18 @@ do
         echo "Installing the i3 Window Manager"
         cp ./defaults/i3 ~/config/config/i3
         cp ./defaults/i3status ~/config/config/i3
+        yay -S picom
+        yay -S i3
+        yay -S dmenu
+        yay -S feh
+        yay -S nmcli
+        yay -S nm-applet
+        yay -S NetworkManager
+        sudo systemctl disable iwd
+        sudo systemctl stop iwd
+        sudo systemctl enable NetworkManager
+        sudo systemctl start NetworkManager
+        yay -R iwd
+        yay -R iwctl
     fi
 done
