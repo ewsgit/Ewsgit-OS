@@ -33,7 +33,10 @@ cp ./defaults/nvim -r ~/config/config/.nvim/
 cp ./default/bash -r ~/config/config/.bash/
 cp ./defaults/alacritty -r ~/config/config/alacritty
 
-# TODO: install yay here
+echo "Installing vim plug"
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 echo "Syncing Repositories"
 sudo pacman -Syy --no-confirm
 echo "Installing Git"
