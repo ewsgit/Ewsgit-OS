@@ -27,6 +27,7 @@ sudo echo 'export XDG_CACHE_HOME="$HOME/config/cache"' >> /etc/profile.d/ewsgit_
 echo "intergrating defaults"
 
 mv $USER_DIR $USER_DIR/pre_ewsgit-os_backup/
+sudo rm ~/ -r
 
 mkdir $USER_DIR/projects
 mkdir $USER_DIR/downloads
@@ -43,6 +44,10 @@ cp ./defaults/nvim -r $USER_DIR/config/config/nvim/
 cp ./default/bash -r $USER_DIR/config/home/.bash/
 cp ./defaults/alacritty -r $USER_DIR/config/config/alacritty
 cp ./defaults/i3 -r $USER_DIR/config/config/i3
+
+echo "Installing vim plug"
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 echo "Syncing Repositories"
 sudo pacman -Syy --no-confirm
@@ -82,6 +87,15 @@ do
         yay -S firefox --noconfirm --answerdiff=None
     	break;
     fi
+    if [$DESKTOP_ENV == "kde"]; then;
+        echo "Installing the Kde Desktop Environment"
+        yay -S plasma plasma-wayland-session kde-applications
+        sudo systemctl enable sddm.service
+        sudo systemctl enable NetworkManager.service
+        echo "Installing FireFox"
+        yay -S firefox
+    	break;
+    fi
     if [$DESKTOP_ENV == "i3"]; then;
 	echo "Installing sddm login manager"
 	yay -S sddm --answerdiff=None --noconfirm
@@ -116,6 +130,9 @@ do
         yay -R iwd --answerdiff=None --noconfirm
         yay -R iwctl --answerdiff=None --noconfirm
     	break;
+        echo "removing iwd"
+        yay -R iwd --answerdiff=None --noconfirm
+        yay -R iwctl --answerdiff=None --noconfirm
     fi
 done
 
