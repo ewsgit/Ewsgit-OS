@@ -1,0 +1,1 @@
+WARN  2022-07-24T19:32:07.229 1265  log_path_init:95: Failed to create directory ./config/cache/nvim for writing logs: Unknown system error 1
