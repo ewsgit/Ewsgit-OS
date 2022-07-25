@@ -1,3 +1,5 @@
+source ~/config/config/ewsgit-bash/linker.sh
+
 case $- in
     *i*) ;;
       *) return;;
@@ -41,9 +43,10 @@ alias ls="ls -a"
 alias vim="nvim"
 alias edit="nvim"
 alias ed="nvim"
-alias su="su -p"
-
+alias su="sudo su -p"
 alias ls="exa"
+alias l="ls"
+alias ll="ls"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -54,4 +57,4 @@ EDITOR=nvim
 export PATH="~/Path:$PATH"
 PATH=~/.local/bin/:$PATH
 PATH=~/.neovimApp/:$PATH
-PATH=~/Path/via/:$PATH
+PATH=~/path/:$PATH

@@ -19,9 +19,9 @@ echo "configurating XDG variables..."
 
 sudo echo "#!/bin/bash" > /etc/profile.d/ewsgit_os_xdg.sh
 
-sudo echo 'export XDG_DATA_HOME="$HOME/config/home"' >> /etc/profile.d/ewsgit_os_xdg.sh
+sudo echo 'export XDG_DATA_HOME="$HOME/config/local/share/"' >> /etc/profile.d/ewsgit_os_xdg.sh
 sudo echo 'export XDG_CONFIG_HOME="$HOME/config/config"' >> /etc/profile.d/ewsgit_os_xdg.sh
-sudo echo 'export XDG_STATE_HOME="$HOME/config/state"' >> /etc/profile.d/ewsgit_os_xdg.sh
+sudo echo 'export XDG_STATE_HOME="$HOME/config/local/state"' >> /etc/profile.d/ewsgit_os_xdg.sh
 sudo echo 'export XDG_CACHE_HOME="$HOME/config/cache"' >> /etc/profile.d/ewsgit_os_xdg.sh
 
 echo "intergrating defaults"
@@ -31,17 +31,25 @@ sudo rm ~/ -r
 
 mkdir $USER_DIR/projects
 mkdir $USER_DIR/downloads
-mkdir $USER_DIR/desktop
 mkdir $USER_DIR/config
 mkdir $USER_DIR/config/path
 mkdir $USER_DIR/config/config
-mkdir $USER_DIR/config/state
 mkdir $USER_DIR/config/cache
-mkdir $USER_DIR/media
+mkdir $USER_DIR/config/local
+mkdir $USER_DIR/config/local/share
+mkdir $USER_DIR/config/local/state
+mkdir $USER_DIR/config/local/bin
+mkdir $USER_DIR/mnt
 mkdir $USER_DIR/remote
 
+echo "attempting to copy config files from the old locations"
+cp $USER_DIR/pre_ewsgit-os_backup/.config/* -r $USER_DIR/config/config/
+cp $USER_DIR/pre_ewsgit-os_backup/.local/* -r $USER_DIR/config/local/
+cp $USER_DIR/pre_ewsgit-os_backup/.cache/* -r $USER_DIR/config/cache
+
 cp ./defaults/nvim -r $USER_DIR/config/config/nvim/
-cp ./default/bash -r $USER_DIR/config/home/.bash/
+cp ./defaults/bash -r $USER_DIR/config/config/ewsgit-bash/
+cp ./defaults/bash/.bashrc $USER_DIR
 cp ./defaults/alacritty -r $USER_DIR/config/config/alacritty
 cp ./defaults/i3 -r $USER_DIR/config/config/i3
 cp ./defaults/i3status -r $USER_DIR/config/i3status
