@@ -44,6 +44,7 @@ cp ./defaults/nvim -r $USER_DIR/config/config/nvim/
 cp ./default/bash -r $USER_DIR/config/home/.bash/
 cp ./defaults/alacritty -r $USER_DIR/config/config/alacritty
 cp ./defaults/i3 -r $USER_DIR/config/config/i3
+cp ./defaults/i3status -r $USER_DIR/config/i3status
 
 echo "Installing vim plug"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
