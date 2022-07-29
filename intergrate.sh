@@ -72,7 +72,7 @@ sudo -u $USER_NAME makepkg -si
 
 sudo -u $USER_NAME yay -S alacritty neovim xorg --answerdiff=None --noconfirm
 echo "installing the 'Jetbrains Mono typeface'"
-sudo -U $USER_NAME yay -S ttf-jetbrains-mono --answerdiff=None --noconfirm
+sudo -u $USER_NAME yay -S ttf-jetbrains-mono --answerdiff=None --noconfirm
 sudo -u $USER_NAME yay -S dkms linux-headers --answerdiff=None --noconfirm
 
 echo "select a desktop environment to install."
