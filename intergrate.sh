@@ -61,6 +61,10 @@ echo "Syncing Repositories"
 sudo pacman -Syy --noconfirm
 echo "Installing Git"
 sudo pacman -S git --noconfirm
+echo "installing go"
+sudo pacman -S go --noconfirm
+echo "installing base-devel"
+sudo pacman -S base-devel --noconfirm
 echo "installing yay (aur helper)"
 sudo git clone https://aur.archlinux.org/yay-git.git
 cd yay-git
