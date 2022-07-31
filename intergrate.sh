@@ -74,6 +74,10 @@ sudo -u $USER_NAME yay -S alacritty neovim xorg --answerdiff=None --noconfirm
 echo "installing the 'Jetbrains Mono typeface'"
 sudo -u $USER_NAME yay -S ttf-jetbrains-mono --answerdiff=None --noconfirm
 sudo -u $USER_NAME yay -S dkms linux-headers --answerdiff=None --noconfirm
+echo "installing nodejs (lts) using nvm (node version manager)"
+sudo -u curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+source $USER_DIR/.bashrc
+sudo -u nvm install --lts
 
 echo "select a desktop environment to install."
 select DESKTOP_ENV in "gnome" "kde" "i3" "continue"; do
@@ -82,15 +86,16 @@ select DESKTOP_ENV in "gnome" "kde" "i3" "continue"; do
 			echo "==========="
 			echo "  WARNING  "
 			echo "==========="
-			echo "No Desktop Environment will be installed!"
-        		echo "The system will reboot shortly"
-        	;;
+        	echo "The system will reboot shortly press ctrl+c to cancel this."
+        	sudo -u yay -Syu
+            reboot now
+            ;;
 		gnome)
         		echo "Installing the Gnome Desktop Environment"
         		sudo -u $USER_NAME yay -S gdm --answerdiff=None --noconfirm
         		systemctl enable gdm.service
         		sudo -u $USER_NAME yay -S gnome --noconfirm --answerdiff=None
-			sudo -u yay -S firefox --noconfirm --answerdiff=None
+			    sudo -u yay -S firefox --noconfirm --answerdiff=None
 		;;
     		kde)
 			echo "Installing the K Desktop Environment (kde)"
@@ -101,40 +106,32 @@ select DESKTOP_ENV in "gnome" "kde" "i3" "continue"; do
         		sudo -u $USER_NAME yay -S firefox --noconfirm --answerdiff=None
     		;;
     		i3)
-			echo "Installing sddm login manager"
-			sudo -u $USER_NAME yay -S sddm --answerdiff=None --noconfirm
-			systemctl enable sddm
+			    echo "Installing sddm login manager"
+			    sudo -u $USER_NAME yay -S sddm --answerdiff=None --noconfirm
+			    systemctl enable sddm
 		        echo "Installing the i3 Window Manager"
 	        	sudo -u $USER_NAME yay -S i3-gaps i3status --answerdiff=None --noconfirm
 		        echo "installing NetworkManager"
 	        	sudo -u $USER_NAME yay -S NetworkManager --answerdiff=None --noconfirm
-       			systemctl disable iwd
-        		systemctl stop iwd
 	        	systemctl enable NetworkManager
 		        systemctl start NetworkManager
         		echo "installing default i3 configuration files"
-		        cp ./defaults/i3 ~/config/config/i3
-        		cp ./defaults/i3status ~/config/config/i3
+		        cp ./defaults/i3 ~/config/config/i3 -r
+        		cp ./defaults/i3status ~/config/config/i3status -r
 		        echo "installing default applications"
        	 		echo "installing alacritty"
-			sudo -u $USER_NAME yay -S alacritty --answerdiff=None --noconfirm
-			echo "installing FireFox"
+    			sudo -u $USER_NAME yay -S alacritty --answerdiff=None --noconfirm
+	    		echo "installing FireFox"
 	        	sudo -u $USER_NAME yay -S firefox --answerdiff=None --noconfirm
         		echo "installing picom"
-			sudo -u $USER_NAME yay -S picom --answerdiff=None --noconfirm
+    			sudo -u $USER_NAME yay -S picom --answerdiff=None --noconfirm
         		echo "installing dmenu"
 	        	sudo -u $USER_NAME yay -S dmenu --answerdiff=None --noconfirm
-			sudo -u $USER_NAME yay -S feh --answerdiff=None --noconfirm
+	    		sudo -u $USER_NAME yay -S feh --answerdiff=None --noconfirm
 	        	echo "installing NetworkManager Gui and Cli"
 	        	sudo -u $USER_NAME yay -S nm-applet --answerdiff=None --noconfirm
-			echo "installing capnet-assistant (manage and display portal wifi login systems)"
-			sudo -u $USER_NAME yay -S capnet-assist --answerdiff=None --noconfirm
-        		echo "removing iwd"
-        		sudo -u $USER_NAME yay -R iwd --answerdiff=None --noconfirm
-        		sudo -u $USER_NAME yay -R iwctl --answerdiff=None --noconfirm
+		    	echo "installing capnet-assistant (manage and display portal wifi login systems)"
+			    sudo -u $USER_NAME yay -S capnet-assist --answerdiff=None --noconfirm
 		;;
 	esac
 done
-
-yay -Syu
-sudo reboot
