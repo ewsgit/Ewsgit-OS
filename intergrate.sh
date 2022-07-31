@@ -50,8 +50,6 @@ cp ./defaults/nvim -r $USER_DIR/config/config/nvim/
 cp ./defaults/bash -r $USER_DIR/config/config/ewsgit-bash/
 cp ./defaults/bash/.bashrc $USER_DIR
 cp ./defaults/alacritty -r $USER_DIR/config/config/alacritty
-cp ./defaults/i3 -r $USER_DIR/config/config/i3
-cp ./defaults/i3status -r $USER_DIR/config/i3status
 sudo cp ./defaults/os-release /etc/os-release
 cp ./defaults/dmenu_runner $USER_DIR/config/local/bin
 
@@ -72,7 +70,12 @@ sudo git clone https://aur.archlinux.org/yay-git.git
 cd yay-git
 sudo -u $USER_NAME makepkg -si
 
-sudo -u $USER_NAME yay -S alacritty neovim xorg --answerdiff=None --noconfirm
+echo "Installing alacritty"
+sudo -u $USER_NAME yay -S alacritty --answerdiff=None --noconfirm
+echo "Installing neovim"
+sudo -u $USER_NAME yay -S neovim --answerdiff=None --noconfirm
+echo "Installing xorg"
+sudo -u $USER_NAME yay -S xorg --answerdiff=None --noconfirm
 echo "installing the 'Jetbrains Mono typeface'"
 sudo -u $USER_NAME yay -S ttf-jetbrains-mono --answerdiff=None --noconfirm
 sudo -u $USER_NAME yay -S dkms linux-headers --answerdiff=None --noconfirm
@@ -82,6 +85,8 @@ source $USER_DIR/.bashrc
 sudo -u $USER_NAME nvm install --lts
 echo "installing exa"
 sudo -u $USER_NAME yay -S exa
+echo "installing neovim pluggins (using vimplug)"
+sudo -u $USER_NAME nvim +'PlugInstall --sync' +qa
 
 echo "select a desktop environment to install."
 select DESKTOP_ENV in "gnome" "kde" "i3" "continue"; do
@@ -99,8 +104,11 @@ select DESKTOP_ENV in "gnome" "kde" "i3" "continue"; do
         		sudo -u $USER_NAME yay -S gdm --answerdiff=None --noconfirm
         		systemctl enable gdm.service
         		sudo -u $USER_NAME yay -S gnome --noconfirm --answerdiff=None
-			    sudo -u $USER_NAME yay -S firefox --noconfirm --answerdiff=None
-		;;
+			    echo "Installing FireFox"
+                sudo -u $USER_NAME yay -S firefox --noconfirm --answerdiff=None
+		        echo "Installing Gnome-Tweaks"
+                sudo -u $USER_NAME yay -S gnome-tweaks --noconfirm --answerdiff=None
+            ;;
     		kde)
 			echo "Installing the K Desktop Environment (kde)"
         		sudo -u $USER_NAME yay -S plasma plasma-wayland-session kde-applications --answerdiff=None --noconfirm
@@ -120,11 +128,9 @@ select DESKTOP_ENV in "gnome" "kde" "i3" "continue"; do
 	        	systemctl enable NetworkManager
 		        systemctl start NetworkManager
         		echo "installing default i3 configuration files"
-		        cp ./defaults/i3 ~/config/config/i3 -r
-        		cp ./defaults/i3status ~/config/config/i3status -r
+		        cp ./defaults/i3/ ~/config/config/i3/ -r
+        		cp ./defaults/i3status/ ~/config/config/i3status/ -r
 		        echo "installing default applications"
-       	 		echo "installing alacritty"
-    			sudo -u $USER_NAME yay -S alacritty --answerdiff=None --noconfirm
 	    		echo "installing FireFox"
 	        	sudo -u $USER_NAME yay -S firefox --answerdiff=None --noconfirm
         		echo "installing picom"
