@@ -1,0 +1,10 @@
+NAME="ewsgit-os"
+PRETTY_NAME="Ewsgit OS"
+ID=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;23;147;209"
+HOME_URL="https://github.com/ewsgit/ewsgit-os"
+DOCUMENTATION_URL="https://github.com/ewsgit/ewsgit-os/wiki"
+SUPPORT_URL=""
+BUG_REPORT_URL="https://github.com/ewsgit/Ewsgit-OS/issues"
+LOGO=archlinux-logo

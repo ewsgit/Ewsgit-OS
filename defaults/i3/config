@@ -19,7 +19,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id /home/ewsgit/.local/bin/dmenu_run
+bindsym $mod+d exec --no-startup-id ~/config/local/bin/dmenu_runner
 
 # change focus
 bindsym $mod+j focus left
@@ -153,6 +153,8 @@ for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 
+for_window [class="nautilus"] floating disable
+
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
@@ -207,7 +209,7 @@ mode "resize" {
 }
 
 # Autostart applications
-exec --no-startup-id feh --restore; sleep 1; compton -b
+exec --no-startup-id ~/.fehbg --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id picom
 

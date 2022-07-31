@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/usr/bin/dmenu_path | dmenu -p "Application to launch" -l 20 -sb "#e76f51" -nb "#264653" -sf "#ffffff" -nf "#dddddd" -fn "JetBrains Mono" | bash

@@ -44,7 +44,7 @@ mkdir $USER_DIR/remote
 echo "attempting to copy config files from the old locations"
 cp $USER_DIR/pre_ewsgit-os_backup/.config/* -r $USER_DIR/config/config/
 cp $USER_DIR/pre_ewsgit-os_backup/.local/* -r $USER_DIR/config/local/
-cp $USER_DIR/pre_ewsgit-os_backup/.cache/* -r $USER_DIR/config/cache
+cp $USER_DIR/pre_ewsgit-os_backup/.cache/* -r $USER_DIR/config/cache/
 
 cp ./defaults/nvim -r $USER_DIR/config/config/nvim/
 cp ./defaults/bash -r $USER_DIR/config/config/ewsgit-bash/
@@ -52,9 +52,11 @@ cp ./defaults/bash/.bashrc $USER_DIR
 cp ./defaults/alacritty -r $USER_DIR/config/config/alacritty
 cp ./defaults/i3 -r $USER_DIR/config/config/i3
 cp ./defaults/i3status -r $USER_DIR/config/i3status
+sudo cp ./defaults/os-release /etc/os-release
+cp ./defaults/dmenu_runner $USER_DIR/config/local/bin
 
 echo "Installing vim plug"
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+sudo -u $USER_NAME sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 echo "Syncing Repositories"
@@ -75,9 +77,11 @@ echo "installing the 'Jetbrains Mono typeface'"
 sudo -u $USER_NAME yay -S ttf-jetbrains-mono --answerdiff=None --noconfirm
 sudo -u $USER_NAME yay -S dkms linux-headers --answerdiff=None --noconfirm
 echo "installing nodejs (lts) using nvm (node version manager)"
-sudo -u curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+sudo -u $USER_NAME curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 source $USER_DIR/.bashrc
-sudo -u nvm install --lts
+sudo -u $USER_NAME nvm install --lts
+echo "installing exa"
+sudo -u $USER_NAME yay -S exa
 
 echo "select a desktop environment to install."
 select DESKTOP_ENV in "gnome" "kde" "i3" "continue"; do
@@ -87,7 +91,7 @@ select DESKTOP_ENV in "gnome" "kde" "i3" "continue"; do
 			echo "  WARNING  "
 			echo "==========="
         	echo "The system will reboot shortly press ctrl+c to cancel this."
-        	sudo -u yay -Syu
+        	sudo -u $USER_NAME yay -Syu
             reboot now
             ;;
 		gnome)
@@ -95,7 +99,7 @@ select DESKTOP_ENV in "gnome" "kde" "i3" "continue"; do
         		sudo -u $USER_NAME yay -S gdm --answerdiff=None --noconfirm
         		systemctl enable gdm.service
         		sudo -u $USER_NAME yay -S gnome --noconfirm --answerdiff=None
-			    sudo -u yay -S firefox --noconfirm --answerdiff=None
+			    sudo -u $USER_NAME yay -S firefox --noconfirm --answerdiff=None
 		;;
     		kde)
 			echo "Installing the K Desktop Environment (kde)"
