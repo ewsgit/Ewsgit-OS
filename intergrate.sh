@@ -2,8 +2,8 @@
 
 # EwsgitOS © 2022 Ewsgit
 
-export USER_DIR=/home/ewsgit
-export USER_NAME=ewsgit
+export USER_NAME=$USER
+export USER_DIR=/home/$USER_NAME
 
 export SCRIPT_VERSION=1
 
@@ -31,8 +31,7 @@ mv $USER_DIR/* $USER_DIR/pre_ewsgitos_backup/
 
 echo "Creating default user folders"
 
-mkdir $USER_DIR/projects
-mkdir $USER_DIR/downloads
+mkdir $USER_DIR/Projects
 mkdir $USER_DIR/config
 mkdir $USER_DIR/config/config
 mkdir $USER_DIR/config/local
@@ -41,11 +40,10 @@ mkdir $USER_DIR/config/local/state
 mkdir $USER_DIR/config/local/bin
 mkdir $USER_DIR/config/path
 mkdir $USER_DIR/config/cache
-mkdir $USER_DIR/mnt
-mkdir $USER_DIR/remote
 
 echo "beginning disro-specific installation steps"
 select DISTRO in "ubuntu" "arch"; do
+    export DISTRO=$DISTRO
     case $DISTRO in
         ubuntu)
             source ./distro/ubuntu.sh
